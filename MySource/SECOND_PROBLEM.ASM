@@ -1,0 +1,24 @@
+.STACK
+.DATA
+ARRAY DB 31H,32H,33H,30H
+.CODE
+MAIN PROC 
+    MOV AX,@DATA
+    MOV DS,AX
+    MOV AX,0H
+    MOV BX,0H
+    MOV CX,00H
+    LEA SI,ARRAY
+    START:
+    MOV BL,[SI]
+    CMP BL,30H
+    JE AVG
+    INC SI
+    INC CX
+    ADD AX,BX 
+    AAA
+    JMP START
+    AVG:
+    DIV CX
+    MOV DX,07F2H
+    OUT DX,AX
